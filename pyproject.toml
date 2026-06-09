@@ -1,0 +1,111 @@
+[project]
+name = "litestar_chameleon"
+version = "0.1"
+description = "Support for Chameleon templates in Litestar."
+readme = "README.md"
+
+authors = [
+    {name = "H. Turgut Uyar", email = "uyar@tekir.org"},
+]
+license = "BSD-3-Clause"
+license-files = ["LICENSE.txt"]
+
+keywords = [
+    "template",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: Litestar",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Text Processing :: Markup :: HTML",
+]
+
+requires-python = ">=3.12"
+dependencies = [
+    "chameleon>=4.6.0,<5",
+    "litestar>=2.23.0,<3",
+]
+
+[dependency-groups]
+test = [
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+]
+typing = [
+    "mypy>=2.1.0",
+]
+style = [
+    "ruff>=0.15.16",
+]
+dev = [
+    {include-group = "test"},
+    {include-group = "typing"},
+    {include-group = "style"},
+    "tox-uv>=1.35.2",
+]
+
+[project.urls]
+homepage = "https://pypi.org/project/litestar_chameleon/"
+repository = "https://code.tekir.org/uyar/litestar_chameleon"
+
+[tool.setuptools]
+py-modules = ["litestar_chameleon"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["litestar_chameleon"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+select = ["E", "W", "N", "F", "I", "A", "T20"]
+preview = true
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py3{12,13,14}, type, style
+isolated_build = true
+
+[testenv]
+runner = uv-venv-lock-runner
+package = wheel
+wheel_build_env = .pkg
+commands =
+    pytest
+
+[testenv:coverage]
+commands =
+    pytest --cov
+
+[testenv:type]
+skip_install = true
+commands =
+    mypy litestar_chameleon.py tests
+
+[testenv:style]
+skip_install = true
+commands =
+    ruff check litestar_chameleon.py tests
+"""
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
