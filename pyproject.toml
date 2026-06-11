@@ -1,6 +1,6 @@
 [project]
 name = "litestar_chameleon"
-version = "0.1"
+version = "0.2"
 description = "Support for Chameleon templates in Litestar."
 readme = "README.md"
 
@@ -53,16 +53,13 @@ dev = [
 
 [project.urls]
 homepage = "https://pypi.org/project/litestar_chameleon/"
-repository = "https://code.tekir.org/uyar/litestar_chameleon"
-
-[tool.setuptools]
-py-modules = ["litestar_chameleon"]
+repository = "https://github.com/uyar/litestar_chameleon"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
 [tool.coverage.run]
-source = ["litestar_chameleon"]
+source_pkgs = ["litestar_chameleon"]
 
 [tool.coverage.report]
 show_missing = true
@@ -98,14 +95,14 @@ commands =
 [testenv:type]
 skip_install = true
 commands =
-    mypy litestar_chameleon.py tests
+    mypy src tests
 
 [testenv:style]
 skip_install = true
 commands =
-    ruff check litestar_chameleon.py tests
+    ruff check src tests
 """
 
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.11.19,<0.12"]
+build-backend = "uv_build"
