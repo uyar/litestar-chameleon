@@ -1,6 +1,6 @@
 [project]
-name = "litestar_chameleon"
-version = "0.2"
+name = "litestar-chameleon"
+version = "0.3"
 description = "Support for Chameleon templates in Litestar."
 readme = "README.md"
 
@@ -29,31 +29,30 @@ classifiers = [
 
 requires-python = ">=3.12"
 dependencies = [
-    "chameleon>=4.6.0,<5",
-    "litestar>=2.23.0,<3",
+    "chameleon>=4.6.0",
 ]
 
 [dependency-groups]
 test = [
-    "pytest>=9.0.3",
+    "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
 ]
 typing = [
-    "mypy>=2.1.0",
+    "mypy>=2.3.0",
 ]
 style = [
-    "ruff>=0.15.16",
+    "ruff>=0.15.21",
 ]
 dev = [
     {include-group = "test"},
     {include-group = "typing"},
     {include-group = "style"},
+    "litestar>=2.24.0",
     "tox-uv>=1.35.2",
 ]
 
 [project.urls]
-homepage = "https://pypi.org/project/litestar_chameleon/"
-repository = "https://github.com/uyar/litestar_chameleon"
+repository = "https://github.com/uyar/litestar-chameleon"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -104,5 +103,5 @@ commands =
 """
 
 [build-system]
-requires = ["uv_build>=0.11.19,<0.12"]
+requires = ["uv_build>=0.11.28,<0.12"]
 build-backend = "uv_build"

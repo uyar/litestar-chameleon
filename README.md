@@ -1,6 +1,6 @@
-# litestar_chameleon
+# litestar-chameleon
 
-litestar_chameleon lets developers use
+litestar-chameleon lets developers use
 [Chameleon](https://chameleon.readthedocs.io/) templates
 in [Litestar](https://litestar.dev/) applications.
 
